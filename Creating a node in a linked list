@@ -1,0 +1,28 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *link;
+};
+//Self referential structure --> contains a pointer pointing to the same
+//structure itself
+int main() {
+    /* head contains null initially then after allocating memory of
+    type struct node,
+    Head poiinter contains the address of the memory 
+    So to initialise data in node we have to use the head pointer
+    and assign the data variable by head->data or (*head).data
+    and we have to make *link pointer of type struct to NULL
+    */
+    struct node *head = NULL;
+    head = (struct node*)malloc(sizeof(struct node));
+    head->data = 45; //(*head).data = 45;
+    head->link = NULL;
+    printf("%d\n",head->data);
+    printf("%d",(*head).data);
+    //Output :
+    //45
+    //45
+    return 0;
+}
