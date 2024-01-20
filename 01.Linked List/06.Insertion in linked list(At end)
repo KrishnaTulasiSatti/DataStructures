@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+
+
+
+ struct node *create(){
+      struct node *head = NULL;
+      struct node *newnode;
+      struct node *temp;
+      int choice;
+   printf("Do you want to implement linked list(0,1)?? : ");
+   scanf("%d",&choice);
+   while(choice){
+   newnode = (struct node*)malloc(sizeof(struct node));
+   printf("Enter data : ");
+   scanf("%d",&newnode->data);
+   newnode->next = NULL;
+   if(head == NULL) head = temp =  newnode;
+   else{
+       //head->next = newnode;(X)
+       temp->next = newnode;
+       temp = newnode;
+   }
+   printf("Do you want to continue(0,1)?? : ");
+   scanf("%d",&choice);
+   }
+   return head;
+ }
+ 
+ 
+ 
+ 
+ void display(struct node *head){
+     struct node *temp;
+     temp = head;
+      while(temp != NULL){
+          printf("%d ",temp->data);
+          temp = temp->next;
+      }
+ }
+ 
+ 
+ 
+int main() {
+      struct node *head = create();
+       printf("Before Insertion : ");
+      // 1 2 5 8
+      display(head);
+      
+      
+      struct node *nodenew;
+      nodenew = (struct node*)malloc(sizeof(struct node));
+      printf("\nEnter the data you want to insert in the linked list : ");
+      //9
+      scanf("%d",&nodenew->data);
+      
+      //Insertion at the end
+      nodenew->next=NULL;
+      struct node *temp1;
+      temp1 = head;
+      while(temp1->next != NULL) temp1 = temp1->next;
+      temp1->next = nodenew;
+      
+      
+      
+      printf("After insertion : ");
+      //  1 2 5 8 9
+      display(head);
+    return 0;
+}
