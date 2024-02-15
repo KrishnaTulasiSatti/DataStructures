@@ -1,0 +1,53 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *create(){
+    struct node *head,*newnode,*temp;
+    head = NULL;
+    int choice;
+    printf("Do you want to implement linked list(0,1)?? : ");
+    scanf("%d",&choice);
+     while(choice){
+         newnode = (struct node *)malloc(sizeof(struct node));
+         printf("Enter data : ");
+         scanf("%d",&newnode->data);
+         newnode->next = NULL;
+         if(head == NULL) head = temp = newnode;
+         else{
+             temp->next = newnode;
+             temp = newnode;
+         }
+         printf("Do you want to continue?");
+         scanf("%d",&choice);
+    }
+    return head;
+}
+void display(struct node *head){
+    struct node *temp;
+    temp = head;
+    while(temp != NULL){
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+}
+
+int main() {
+    struct node *head = create();
+    //Delete from beginning
+    struct node *temp;
+    temp = head;
+    printf("Before deletion : ");
+// 1 5 2
+    display(head);
+    head = head->next;
+    free(temp);
+    printf("After deletion : "); // 5 2
+    display(head);
+    
+    
+    return 0;
+}
