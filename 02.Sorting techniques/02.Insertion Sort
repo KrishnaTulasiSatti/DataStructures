@@ -1,0 +1,58 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    //INSERTION SORT
+    int n;
+    scanf("%d",&n);//5
+    int arr[n];
+    for(int i = 0 ; i < n ; i++){
+        scanf("%d",&arr[i]);
+    }
+    /* In insertion sort,we will divide the array into two lists
+    i.e.., Sorted list and Unsorted list
+    The outer loop is for USL and the inner loop is for SL
+    We have to take the first value of USL in temp and cmp it with
+    the values in SL until you find an appropriate place and then 
+    insert it SL ...if you are not getting app place , u have
+    to check upto 0th index in SL
+    
+    Ex : 5 4 10 1 6 2
+         SL : 5    USL : 4 10 1 6 2
+         Cmp 4 with 5--> 5 > 4 So shift 5 to its right place 
+         And if there is no value for 4 to cmp with in SL then insert it
+         5 4 10 1 6 2
+           5 10 1 6 2
+         4 5 10 1 6 2
+         4 5 10 1 6 2
+         4 5    10 6 2
+         4   5 10 6 2
+           4 5 10 6 2
+         1 4 5 10 6 2
+         1 4 5   10 2
+         1 4 5 6 10 2
+         1 4 5 6    10
+         1 4 5   6 10
+         1 4   5 6 10
+         1   4 5 6 10
+         1 2 4 5 6 10 --> This is the required sorted array....!!!
+    */
+    int temp;
+    int j;
+    for(int i = 1 ; i < n ; i++){
+        temp = arr[i];
+        j = i-1;
+        while(j >= 0 && arr[j] > temp){
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = temp;
+    }
+    
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",arr[i]);  // 5 6 8 15 16
+    }
+    
+       
+    return 0;
+}
