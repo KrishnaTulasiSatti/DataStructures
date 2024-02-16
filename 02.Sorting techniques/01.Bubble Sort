@@ -1,0 +1,81 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    //BUBBLE SORT
+    int n;
+    scanf("%d",&n);//5
+    int arr[n];
+    for(int i = 0 ; i < n ; i++){
+        scanf("%d",&arr[i]);
+    }
+    // 15 16 6 8 5 
+    /* Here we need 4(n-1) passes to get sorted array 
+       and in each pass we have to check the relation between two
+       elements (n-1) times...i.e,4 times
+       */
+    for(int i = 0 ; i < n-1 ; i++){
+        for(int j = 0 ; j < n-1 ; j++){
+            if(arr[j] > arr[j+1]){
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",arr[i]);  // 5 6 8 15 16
+    }
+    /* But in each pass we are checking (n-1) times unnecessarily...
+       As in each pass largest number will bubble to end...No need 
+       of checking each time 
+       So we can modify the above code i.e...,inner loop iterate to 
+       (n-i-1) times instead of (n-1) times */
+        for(int i = 0 ; i < n-1 ; i++){
+        for(int j = 0 ; j < n-i-1 ; j++){
+            if(arr[j] > arr[j+1]){
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+      }
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",arr[i]);  // 5 6 8 15 16
+    }
+    /* But sometimes we don't need (n-1) passes
+       It can be sorted in less than (n-1) passes
+       Ex :     16 14 5 6 8
+       Pass-1 : 14 16 5 6 8
+                14 5 16 6 8
+                14 5 6 16 8
+                14 5 6 8 16
+       Pass-2 : 5 14 6 8 16
+                5 6 14 8 16
+                5 6 8 14 16
+              Thus array is sorted in less than (n-1) passes
+        Even if we run loop to (n-1) times no swapping takes place         
+       To modify this...
+       if you get any pass in which no swapping is involved then
+       break the outer loop and the array is sorted
+    */
+    
+    // This is the optimised bubble sort....!!
+     for(int i = 0 ; i < n-1 ; i++){
+        int flag = 0;
+        for(int j = 0 ; j < n-i-1 ; j++){
+            if(arr[j] > arr[j+1]){
+                flag = 1;
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+        if(flag == 0) break;
+      }
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",arr[i]);  // 5 6 8 15 16
+    }
+       
+    return 0;
+}
