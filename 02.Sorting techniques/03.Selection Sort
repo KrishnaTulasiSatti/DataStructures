@@ -1,0 +1,43 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    //SELECTION SORT
+    int n;
+    scanf("%d",&n);//5
+    int a[n];
+    for(int i = 0 ; i < n ; i++){
+        scanf("%d",&a[i]);
+    }
+    /* In selection sort, the array is divided into two lists
+       i.e.., SL and USL just as in the insertion sort
+       But here we start with an empty SL;
+       And we find the min element in USL and swap min with
+       the first element in the USL;
+       Ex :      : 7 4 10 8 3 1  min = 1
+       Pass-1 :  1 : 4 10 8 3 7      = 3
+       Pass-2 :  1 3 : 10 8 4 7      = 4
+       Pass-3 :  1 3 4 : 8 10 7      = 7
+       Pass-4 :  1 3 4 7 : 10 8      = 8
+       Pass-5 :  1 3 4 7 8 : 10    This is the required sorted array ...!!!
+       (n-1) passes are required
+    */
+    for(int i = 0 ; i < n-1 ; i++) {
+        int min = i;
+       // FINDING THE POSITION OF MIN ELEMENT...
+        for(int j = i+1 ; j < n ; j++){
+            if(a[j] < a[min]) min = j;
+        }
+        if(min != i){
+            int temp = a[i];
+            a[i] = a[min];
+            a[min] = temp;
+        }
+    }  
+    for(int i = 0 ; i < n ; i++){
+        printf("%d ",a[i]);  // 5 6 8 15 16
+    }
+    
+       
+    return 0;
+}
